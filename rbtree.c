@@ -9,8 +9,7 @@ struct node
     struct node *left, *right, *parent;
 };
 
-void leftRotate(struct node **root, struct node *r)
-{
+void leftRotate(struct node **root, struct node *r){
     if (!r || !r->right) return;
     
     struct node *temp = r->right;
@@ -27,7 +26,6 @@ void leftRotate(struct node **root, struct node *r)
     temp->left = r;
     r->parent = temp;
 }
-
 void rightRotate(struct node **root, struct node *temp)
 {
     if (!temp || !temp->left)return;
@@ -151,4 +149,30 @@ void insert(struct node **root, int data){
         //fix red-black tree's property if violated
         insertFixUp(root, n);
     }
+}
+void inorderTraversal(struct node *node){
+    if(root == NULL) return;
+    
+    inorderTraversal(node->left);
+    
+    printf("%d - %c", node->data, node->color);
+    
+    inorderTraversal(node->right);
+}
+int main(void){
+    int number;
+    char stop;
+    
+    struct node *root = null;
+    
+    printf("What numbers would you like to insert?");
+    while(stop != 'x'){
+        scanf("Input number: %d", number);
+        insert(&root, number);
+        scanf("Insert x to stop inserting numbers", stop);
+    }
+    
+    inorderTraversal(&root);
+    
+    
 }
