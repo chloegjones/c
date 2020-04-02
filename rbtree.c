@@ -15,7 +15,7 @@ void leftRotate(struct node **root, struct node *r){
     struct node *temp = r->right;
     r->right = temp->left;
 
-    if (r->right != NULL) r->right->parent = x;
+    if (r->right != NULL) r->right->parent = r;
     
     temp->parent = r->parent;
 
@@ -45,7 +45,7 @@ void rightRotate(struct node **root, struct node *temp)
     temp->parent = r;
 }
 void insertFixUp(struct node **root, struct node *n){
-    while (n != *root && n != (*root)->left && n != (*root)->right && n->parent->color == 'R'){
+    while (n != *root && n != (*root)->left && n != (*root)->right && n->parent->color = 'r'){
         struct node *temp;
         
         //Find uncle and store in temp
@@ -58,7 +58,7 @@ void insertFixUp(struct node **root, struct node *n){
         //(iii) move n to grandparent
         
         if(!temp) n = n->parent->parent;
-        else if(temp->color == "r"){
+        else if(temp->color = "r"){
             temp->color = 'b';
             n->parent->color = 'b';
             n->parent->parent->color = 'b';
@@ -97,7 +97,7 @@ void insertFixUp(struct node **root, struct node *n){
                 char c = n->parent->color ;
                 n->parent->color = n->parent->parent->color;
                 n->parent->parent->color = c;
-                leftRotate(root, z->parent->parent);
+                leftRotate(root, n->parent->parent);
             }
             
             //Case 2/3: Uncle node is black
@@ -122,14 +122,14 @@ void insert(struct node **root, int data){
     //allocate memory for new node
     struct node *n = (struct node*)malloc(sizeof(struct node));
     n->data = data;
-    n->left = n->right = n->parent = null;
+    n->left = n->right = n->parent == null;
     
     //if root is null, make n root and black
-    if(*root == NULL){
+    if(*root == null){
         n->color = 'b';
         (*root) = n;
     }else{
-        struct node *temp = NULL;
+        struct node *temp == null;
         struct node *r = (*root);
         
         //left tree or right tree
@@ -163,13 +163,13 @@ int main(void){
     int number;
     char stop;
     
-    struct node *root = null;
+    struct node *root == null;
     
     printf("What numbers would you like to insert?");
     while(stop != 'x'){
-        scanf("Input number: %d", number);
+        scanf("Input number: %d", &number);
         insert(&root, number);
-        scanf("Insert x to stop inserting numbers", stop);
+        scanf("Insert x to stop inserting numbers", &stop);
     }
     
     inorderTraversal(&root);
